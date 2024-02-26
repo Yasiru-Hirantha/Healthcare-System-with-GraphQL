@@ -1,0 +1,49 @@
+type Mutation{
+    createPatient(patientDTO: PatientDTO!):ApiResponse!
+    updatePatientById(patientDTO: PatientDTO!,id:Int!):ApiResponse!
+    deletePatientById(id:Int!):ApiResponse!
+    createDoctor(doctorDTO: DoctorDTO!): ApiResponse!
+    updateDoctorById(doctorDTO: DoctorDTO!, id:Int!):ApiResponse!
+    deleteDoctorById(id:Int!):ApiResponse!
+}
+input PatientDTO{
+    patientId:Int!
+    patientName:String!
+    patientContactNumber:[String]
+    age:Int!
+    illness:[String]!
+
+}
+input DoctorDTO{
+    doctorId:Int!
+    doctorName:String!
+    specialization:String!
+    doctorContactNumber:[String]!
+    channellingFee:Float!
+    conditionOrDisease:[String]!
+    patientsPerDay:Int!
+}
+type ApiResponse{
+    code:Int!
+    message:String!
+    data:[Patient]
+    data2:[Doctor]
+}
+
+
+type Patient{
+    patientId:Int!
+    patientName:String!
+    patientContactNumber:[String]
+    age:Int!
+    illness:[String]!
+}
+type Doctor{
+    doctorId:Int!
+    doctorName:String!
+    specialization:String!
+    doctorContactNumber:[String]!
+    channellingFee:Float!
+    conditionOrDisease:[String]!
+    patientsPerDay:Int!
+}
