@@ -47,7 +47,7 @@ public class PatientController {
     public ApiResponse findAllPatient() {
         List<Patient> patientList = new ArrayList<>();
         patientList = patientService.findAll();
-        return new ApiResponse(200, "Ok", null, patientList);
+        return new ApiResponse(200, "Ok", patientList, null);
     }
 
 }
