@@ -1,4 +1,6 @@
 type Query{
     findAllPatient:ApiResponse!
     findAllDoctor:ApiResponse!
+    searchPatientByName(name:String!):ApiResponse!
+    searchDoctorByName(name:String!):ApiResponse!
 }

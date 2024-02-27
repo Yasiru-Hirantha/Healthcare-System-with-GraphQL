@@ -9,6 +9,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +26,14 @@ public class DoctorController {
         String details = doctorService.saveDoctor(doctorDTO);
         return new ApiResponse(201, details, null, null);
     }
+    @QueryMapping
+    public ApiResponse searchDoctorByName(@Argument String name){
+        List<Doctor> doctorList=doctorService.searchDoctor(name);
+        return new ApiResponse(200,"Ok",null,doctorList);
+    }
 
     @MutationMapping
     public ApiResponse updateDoctorById(@Argument DoctorDTO doctorDTO, @Argument int id) {
-        System.out.println(doctorDTO.doctorName());
         String details = doctorService.updateDoctorById(doctorDTO, id);
         return new ApiResponse(204, details, null, null);
     }

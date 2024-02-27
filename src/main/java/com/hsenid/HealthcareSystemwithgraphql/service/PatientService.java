@@ -10,9 +10,12 @@ import java.util.List;
 public interface PatientService {
     String savePatient(PatientDTO patientDTO);
 
-    String updatePatient(PatientDTO patientDTO,int id);
+    String updatePatient(PatientDTO patientDTO, int id);
 
     String deletePatient(int id);
 
-    List<Patient>  findAll();
+    List<Patient> findAll();
+
+    List<Patient> searchPatient(String name);
+
 }

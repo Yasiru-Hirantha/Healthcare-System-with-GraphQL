@@ -13,4 +13,7 @@ public interface DoctorService {
     String deleteDoctor(int id);
 
     List<Doctor> findAll();
+
+    List<Doctor> searchDoctor(String name);
+
 }

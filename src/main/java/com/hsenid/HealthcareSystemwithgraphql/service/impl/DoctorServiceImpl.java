@@ -29,7 +29,7 @@ public class DoctorServiceImpl implements DoctorService {
                 doctorDTO.patientsPerDay()
         );
         doctorRepo.save(doctor);
-        return "Successfully saved docor id: " + doctorDTO.doctorId();
+        return "Successfully saved doctor id: " + doctorDTO.doctorId();
     }
 
     @Override
@@ -57,6 +57,19 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<Doctor> findAll() {
-        return doctorRepo.findAll();
+        List<Doctor> doctorList=doctorRepo.findAll();
+        if(doctorList.size()>0){
+            return doctorRepo.findAll();
+        }else throw new RuntimeException("Error");
+
+    }
+
+    @Override
+    public List<Doctor> searchDoctor(String name) {
+        List<Doctor> doctorList=doctorRepo.findDoctorByDoctorName(name);
+        if(doctorList.size()>0){
+            return doctorList;
+        }
+        else throw new RuntimeException("No doctor with the name :"+name+" found!");
     }
 }

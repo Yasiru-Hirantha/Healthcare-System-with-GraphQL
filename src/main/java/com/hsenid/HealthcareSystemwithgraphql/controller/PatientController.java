@@ -19,26 +19,35 @@ public class PatientController {
     public PatientController(PatientService patientService) {
         this.patientService = patientService;
     }
+
     @MutationMapping
-    public ApiResponse createPatient(@Argument PatientDTO patientDTO){
-        String details= patientService.savePatient(patientDTO);
-        return new ApiResponse(201,details,null,null);
-    }
-    @MutationMapping
-    public ApiResponse updatePatientById(@Argument PatientDTO patientDTO, @Argument int id){
-        String details=patientService.updatePatient(patientDTO,id);
-        return new ApiResponse(204,details,null,null);
-    }
-    @MutationMapping
-    public ApiResponse deletePatientById(@Argument int id){
-        String details=patientService.deletePatient(id);
-        return new ApiResponse(204,details,null, null);
+    public ApiResponse createPatient(@Argument PatientDTO patientDTO) {
+        String details = patientService.savePatient(patientDTO);
+        return new ApiResponse(201, details, null, null);
     }
     @QueryMapping
-    public ApiResponse findAllPatient(){
-        List<Patient> patientList=new ArrayList<>();
-        patientList=patientService.findAll();
-        return new ApiResponse(200,"Ok",null,patientList);
+    public ApiResponse searchPatientByName(@Argument String name){
+        List<Patient> patientList =patientService.searchPatient(name);
+        return new ApiResponse(200,"Ok",patientList,null);
+    }
+
+    @MutationMapping
+    public ApiResponse updatePatientById(@Argument PatientDTO patientDTO, @Argument int id) {
+        String details = patientService.updatePatient(patientDTO, id);
+        return new ApiResponse(204, details, null, null);
+    }
+
+    @MutationMapping
+    public ApiResponse deletePatientById(@Argument int id) {
+        String details = patientService.deletePatient(id);
+        return new ApiResponse(204, details, null, null);
+    }
+
+    @QueryMapping
+    public ApiResponse findAllPatient() {
+        List<Patient> patientList = new ArrayList<>();
+        patientList = patientService.findAll();
+        return new ApiResponse(200, "Ok", null, patientList);
     }
 
 }

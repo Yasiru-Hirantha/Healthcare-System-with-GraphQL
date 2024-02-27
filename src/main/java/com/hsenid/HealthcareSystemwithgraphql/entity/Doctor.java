@@ -21,5 +21,8 @@ public class Doctor {
     private ArrayList<String> doctorContactNumber;
     private double channellingFee;
     private ArrayList<String> conditionOrDisease;
+    
     private int patientsPerDay;
+
+
 }
