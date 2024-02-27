@@ -1,0 +1,49 @@
+query searchPatientByName($name: String!) {
+    searchPatientByName(name:$name)
+     {
+        __typename
+        code
+        message
+        data {
+            patientId
+            patientName
+            patientContactNumber
+            age
+            illness
+        }
+        data2 {
+            doctorId
+            doctorName
+            specialization
+            doctorContactNumber
+            channellingFee
+            conditionOrDisease
+            patientsPerDay
+        }
+    }
+}
+==========================================================
+query searchDoctorByName($name: String!) {
+    searchDoctorByName(name:$name)
+     {
+        __typename
+        code
+        message
+        data {
+            patientId
+            patientName
+            patientContactNumber
+            age
+            illness
+        }
+        data2 {
+            doctorId
+            doctorName
+            specialization
+            doctorContactNumber
+            channellingFee
+            conditionOrDisease
+            patientsPerDay
+        }
+    }
+}
