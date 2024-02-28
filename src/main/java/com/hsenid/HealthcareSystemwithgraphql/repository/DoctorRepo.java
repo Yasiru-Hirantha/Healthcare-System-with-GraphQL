@@ -14,7 +14,9 @@ public interface DoctorRepo extends MongoRepository<Doctor, Integer> {
 
     void deleteByDoctorId(int id);
 
-    boolean existsDoctorByDoctorName(String name);
-
     List<Doctor> findDoctorByDoctorName(String name);
+
+    List<Doctor> findDoctorBySpecialization(String specialization);
+
+//    List<Doctor> findByConditionOrDisease(String conditionOrDisease);
 }

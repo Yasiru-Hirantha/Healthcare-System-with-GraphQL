@@ -1,5 +1,7 @@
 package com.hsenid.HealthcareSystemwithgraphql.dto;
 
+import com.hsenid.HealthcareSystemwithgraphql.entity.Patient;
+
 import java.util.ArrayList;
 import java.util.List;
 

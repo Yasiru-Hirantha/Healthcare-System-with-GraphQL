@@ -1,14 +1,14 @@
 package com.hsenid.HealthcareSystemwithgraphql.service.impl;
 
 import com.hsenid.HealthcareSystemwithgraphql.dto.PatientDTO;
+import com.hsenid.HealthcareSystemwithgraphql.entity.Doctor;
 import com.hsenid.HealthcareSystemwithgraphql.entity.Patient;
+import com.hsenid.HealthcareSystemwithgraphql.repository.DoctorRepo;
 import com.hsenid.HealthcareSystemwithgraphql.repository.PatientRepo;
 import com.hsenid.HealthcareSystemwithgraphql.service.PatientService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -16,16 +16,19 @@ public class PatientServiceImpl implements PatientService {
 
     public PatientServiceImpl(PatientRepo patientRepo) {
         this.patientRepo = patientRepo;
+
     }
 
     @Override
     public String savePatient(PatientDTO patientDTO) {
+
         Patient patient = new Patient(
                 patientDTO.patientId(),
                 patientDTO.patientName(),
                 patientDTO.patientContactNumber(),
                 patientDTO.age(),
                 patientDTO.illness()
+
         );
         patientRepo.save(patient);
         return "Successfully saved patient :" + patientDTO.patientId();
@@ -42,8 +45,6 @@ public class PatientServiceImpl implements PatientService {
             patientRepo.save(patient);
             return "Successfully updated patient :" + id;
         } else return "Invalid patient id: " + id;
-
-
     }
 
     @Override
@@ -59,18 +60,18 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public List<Patient> findAll() {
-        List<Patient> patientList=patientRepo.findAll();
-        if(patientList.size()>0){
+        List<Patient> patientList = patientRepo.findAll();
+        if (patientList.size() > 0) {
             return patientList;
-        }else throw new RuntimeException("Error");
+        } else throw new RuntimeException("Error");
 
     }
 
     @Override
     public List<Patient> searchPatient(String name) {
-        List<Patient> patientList=patientRepo.findByPatientName(name);
-        if(patientList.size()>0){
+        List<Patient> patientList = patientRepo.findByPatientName(name);
+        if (patientList.size() > 0) {
             return patientList;
-        }else throw new RuntimeException("No patient with the name :"+name+" was found!");
+        } else throw new RuntimeException("No patient with the name :" + name + " was found!");
     }
 }

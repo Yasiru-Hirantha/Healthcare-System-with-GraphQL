@@ -3,4 +3,6 @@ type Query{
     findAllDoctor:ApiResponse!
     searchPatientByName(name:String!):ApiResponse!
     searchDoctorByName(name:String!):ApiResponse!
+    searchSpecialist(conditionOrDisease:String!):ApiResponse!
+    searchSpecialization(specialization:String!):ApiResponse!
 }

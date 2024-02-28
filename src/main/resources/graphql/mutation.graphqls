@@ -22,6 +22,7 @@ input DoctorDTO{
     channellingFee:Float!
     conditionOrDisease:[String]!
     patientsPerDay:Int!
+
 }
 type ApiResponse{
     code:Int!
@@ -37,6 +38,8 @@ type Patient{
     patientContactNumber:[String]
     age:Int!
     illness:[String]!
+
+
 }
 type Doctor{
     doctorId:Int!
@@ -46,4 +49,5 @@ type Doctor{
     channellingFee:Float!
     conditionOrDisease:[String]!
     patientsPerDay:Int!
+
 }
