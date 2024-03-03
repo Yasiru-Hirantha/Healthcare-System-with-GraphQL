@@ -20,27 +20,36 @@ public class ReceptionController {
     }
 
     @QueryMapping
-    public ApiResponse searchSpecialist(@Argument String conditionOrDisease){
-        List<Doctor> doctor= receptionService.findSpecialist(conditionOrDisease);
-        return new ApiResponse(200,doctor.isEmpty()?"No specialist available":"Ok",null,doctor,null);
+    public ApiResponse searchSpecialist(@Argument String conditionOrDisease) {
+        List<Doctor> doctor = receptionService.findSpecialist(conditionOrDisease);
+        return new ApiResponse(200, doctor.isEmpty() ? "No specialist available" : "Ok", null, doctor, null);
 
     }
+
     @QueryMapping
-    public ApiResponse searchSpecialization(@Argument String specialization){
-        List<Doctor> doctor= receptionService.findSpecialDoctor(specialization);
-        return new ApiResponse(200,doctor.isEmpty()?"No specialist available":"Ok",null,doctor,null);
+    public ApiResponse searchSpecialization(@Argument String specialization) {
+        List<Doctor> doctor = receptionService.findSpecialDoctor(specialization);
+        return new ApiResponse(200, doctor.isEmpty() ? "No specialist available" : "Ok", null, doctor, null);
 
     }
+
     @MutationMapping
-    public  ApiResponse createAppointment(@Argument AppointmentDTO appointmentDTO){
-        String details=receptionService.createNewAppointment(appointmentDTO);
-        return new ApiResponse(201,details,null,null,null);
+    public ApiResponse createAppointment(@Argument AppointmentDTO appointmentDTO) {
+        String details = receptionService.createNewAppointment(appointmentDTO);
+        return new ApiResponse(201, details, null, null, null);
 
     }
+
     @MutationMapping
-    public ApiResponse updateAppointment(@Argument String appointmentId,@Argument String date,@Argument String time){
-        String details=receptionService.updateAppointment(appointmentId,date,time);
-        return new ApiResponse(204,details,null,null,null);
+    public ApiResponse updateAppointment(@Argument String appointmentId, @Argument String date, @Argument String time) {
+        String details = receptionService.updateAppointment(appointmentId, date, time);
+        return new ApiResponse(204, details, null, null, null);
+    }
+
+    @MutationMapping
+    public ApiResponse deleteAppointment(@Argument String appointmentId) {
+        String details = receptionService.deleteAppointment(appointmentId);
+        return new ApiResponse(204, details.isEmpty() ? "Oops! Wrong appointmentId: " + appointmentId : details, null, null, null);
     }
 
 

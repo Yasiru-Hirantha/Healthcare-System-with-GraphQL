@@ -70,4 +70,12 @@ public class ReceptionServiceImpl implements ReceptionService {
             return "Appointment updated for appointmentId: "+appointmentId;
         }else throw new RuntimeException("Invalid appointmentId :"+appointmentId);
     }
+
+    @Override
+    public String deleteAppointment(String appointmentId) {
+        if(appointmentRepo.existsById(appointmentId)){
+            appointmentRepo.deleteById(appointmentId);
+            return "Successfully deleted appointmentId :"+appointmentId;
+        } else return null;
+    }
 }

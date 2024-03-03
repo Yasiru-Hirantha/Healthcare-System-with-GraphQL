@@ -13,4 +13,7 @@ public interface ReceptionService {
     String createNewAppointment(AppointmentDTO appointmentDTO);
 
     String updateAppointment(String appointmentId, String date, String time);
+
+    String deleteAppointment(String appointmentId);
+
 }
