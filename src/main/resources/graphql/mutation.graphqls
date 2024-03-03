@@ -1,13 +1,15 @@
 type Mutation{
     createPatient(patientDTO: PatientDTO!):ApiResponse!
-    updatePatientById(patientDTO: PatientDTO!,id:Int!):ApiResponse!
-    deletePatientById(id:Int!):ApiResponse!
+    updatePatientById(patientDTO: PatientDTO!,patientId:String!):ApiResponse!
+    deletePatientById(patientId:String!):ApiResponse!
     createDoctor(doctorDTO: DoctorDTO!): ApiResponse!
-    updateDoctorById(doctorDTO: DoctorDTO!, id:Int!):ApiResponse!
-    deleteDoctorById(id:Int!):ApiResponse!
+    updateDoctorById(doctorDTO: DoctorDTO!, doctorId:String!):ApiResponse!
+    deleteDoctorById(doctorId:String!):ApiResponse!
+    createAppointment(appointmentDTO:AppointmentDTO!):ApiResponse!
+    updateAppointment(appointmentId:String!,date:String!,time:String!):ApiResponse!
 }
 input PatientDTO{
-    patientId:Int!
+    patientId:String!
     patientName:String!
     patientContactNumber:[String]
     age:Int!
@@ -15,7 +17,7 @@ input PatientDTO{
 
 }
 input DoctorDTO{
-    doctorId:Int!
+    doctorId:String!
     doctorName:String!
     specialization:String!
     doctorContactNumber:[String]!
@@ -25,15 +27,16 @@ input DoctorDTO{
 
 }
 type ApiResponse{
-    code:Int!
+    code:String!
     message:String!
     data:[Patient]
     data2:[Doctor]
+    data3:[Appointment]
 }
 
 
 type Patient{
-    patientId:Int!
+    patientId:String!
     patientName:String!
     patientContactNumber:[String]
     age:Int!
@@ -42,7 +45,7 @@ type Patient{
 
 }
 type Doctor{
-    doctorId:Int!
+    doctorId:String!
     doctorName:String!
     specialization:String!
     doctorContactNumber:[String]!
@@ -50,4 +53,18 @@ type Doctor{
     conditionOrDisease:[String]!
     patientsPerDay:Int!
 
+}
+
+type Appointment{
+    appointmentId:String!
+    doctor:[Doctor]!
+    patient:[Patient]!
+    date:String!
+    time:String!
+}
+input AppointmentDTO{
+    doctorId:String!
+    patientId:String!
+    date:String!
+    time:String!
 }

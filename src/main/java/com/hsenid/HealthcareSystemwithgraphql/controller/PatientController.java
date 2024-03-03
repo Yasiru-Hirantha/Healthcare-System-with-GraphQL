@@ -25,31 +25,35 @@ public class PatientController {
     @MutationMapping
     public ApiResponse createPatient(@Argument PatientDTO patientDTO) {
         String details = patientService.savePatient(patientDTO);
-        return new ApiResponse(201, details, null, null);
+        return new ApiResponse(201, details, null, null,null);
     }
     @QueryMapping
     public ApiResponse searchPatientByName(@Argument String name){
         List<Patient> patientList =patientService.searchPatient(name);
-        return new ApiResponse(200,"Ok",patientList,null);
+        return new ApiResponse(200,patientList.isEmpty()?"No patient from this name":"Ok",patientList,null,null);
     }
 
     @MutationMapping
-    public ApiResponse updatePatientById(@Argument PatientDTO patientDTO, @Argument int id) {
-        String details = patientService.updatePatient(patientDTO, id);
-        return new ApiResponse(204, details, null, null);
+    public ApiResponse updatePatientById(@Argument PatientDTO patientDTO, @Argument String patientId) {
+        String details = patientService.updatePatient(patientDTO, patientId);
+        return new ApiResponse(204, details, null, null,null);
     }
 
     @MutationMapping
-    public ApiResponse deletePatientById(@Argument int id) {
-        String details = patientService.deletePatient(id);
-        return new ApiResponse(204, details, null, null);
+    public ApiResponse deletePatientById(@Argument String patientId) {
+        String details = patientService.deletePatient(patientId);
+        return new ApiResponse(204, details, null, null,null);
     }
 
     @QueryMapping
     public ApiResponse findAllPatient() {
-        List<Patient> patientList = new ArrayList<>();
-        patientList = patientService.findAll();
-        return new ApiResponse(200, "Ok", patientList, null);
+        List<Patient> patientList = patientService.findAll();
+        return new ApiResponse(200, patientList.isEmpty()?"No saved patients":"Ok", patientList, null,null);
+    }
+    @QueryMapping
+    public ApiResponse findPatientById(@Argument String patientId){
+        List<Patient> patientList=patientService.findPatient(patientId);
+        return new ApiResponse(200,patientList.isEmpty()?"No saved patients":"Ok", patientList, null,null);
     }
 
 }

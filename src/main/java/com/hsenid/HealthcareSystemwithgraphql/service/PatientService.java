@@ -2,7 +2,6 @@ package com.hsenid.HealthcareSystemwithgraphql.service;
 
 import com.hsenid.HealthcareSystemwithgraphql.dto.PatientDTO;
 import com.hsenid.HealthcareSystemwithgraphql.entity.Patient;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,12 +9,13 @@ import java.util.List;
 public interface PatientService {
     String savePatient(PatientDTO patientDTO);
 
-    String updatePatient(PatientDTO patientDTO, int id);
+    String updatePatient(PatientDTO patientDTO, String patientId);
 
-    String deletePatient(int id);
+    String deletePatient(String patientId);
 
     List<Patient> findAll();
 
     List<Patient> searchPatient(String name);
 
+    List<Patient> findPatient(String patientId);
 }

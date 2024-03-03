@@ -8,12 +8,13 @@ import java.util.List;
 public interface DoctorService {
     String saveDoctor(DoctorDTO doctorDTO);
 
-    String updateDoctorById(DoctorDTO doctorDTO, int id);
+    String updateDoctorById(DoctorDTO doctorDTO, String doctorId);
 
-    String deleteDoctor(int id);
+    String deleteDoctor(String doctorId);
 
     List<Doctor> findAll();
 
     List<Doctor> searchDoctor(String name);
 
+    List<Doctor> findDoctor(String doctorId);
 }

@@ -6,6 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public record PatientDTO(int patientId, String patientName, ArrayList<String> patientContactNumber, int age,
+public record PatientDTO(String patientId, String patientName, ArrayList<String> patientContactNumber, int age,
                          ArrayList<String> illness) {
 }

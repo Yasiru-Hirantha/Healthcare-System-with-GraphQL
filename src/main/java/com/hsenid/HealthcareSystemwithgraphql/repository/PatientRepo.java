@@ -7,14 +7,16 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PatientRepo extends MongoRepository<Patient, Integer> {
-    Patient findPatientByPatientId(int id);
+public interface PatientRepo extends MongoRepository<Patient, String> {
 
-    boolean existsByPatientId(int id);
 
-    void deleteByPatientId(int id);
+    boolean existsByPatientId(String patientId);
 
-    List<Patient> findByPatientName(String name);
+    void deleteByPatientId(String patientId);
 
-    boolean existsPatientByPatientName(String name);
+    List<Patient> findByPatientName(String patientName);
+
+    boolean existsPatientByPatientName(String patientName);
+
+    List<Patient> findPatientsByPatientId(String patientId);
 }

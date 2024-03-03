@@ -35,25 +35,26 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public String updatePatient(PatientDTO patientDTO, int id) {
-        if (patientRepo.existsById(id)) {
-            Patient patient = patientRepo.findPatientByPatientId(id);
+    public String updatePatient(PatientDTO patientDTO, String patientId) {
+        if (patientRepo.existsById(patientId)) {
+            List<Patient> patientList = patientRepo.findPatientsByPatientId(patientId);
+            Patient patient=patientList.get(0);
             patient.setPatientName(patientDTO.patientName());
             patient.setPatientContactNumber(patientDTO.patientContactNumber());
             patient.setAge(patientDTO.age());
             patient.setIllness(patientDTO.illness());
             patientRepo.save(patient);
-            return "Successfully updated patient :" + id;
-        } else return "Invalid patient id: " + id;
+            return "Successfully updated patient :" + patientId;
+        } else return "Invalid patient id: " + patientId;
     }
 
     @Override
-    public String deletePatient(int id) {
-        if (patientRepo.existsByPatientId(id)) {
-            patientRepo.deleteByPatientId(id);
-            return "Successfully deleted patient :" + id;
+    public String deletePatient(String patientId) {
+        if (patientRepo.existsByPatientId(patientId)) {
+            patientRepo.deleteByPatientId(patientId);
+            return "Successfully deleted patient :" + patientId;
         } else {
-            return "Invalid student id :" + id;
+            return "Invalid student id :" + patientId;
         }
 
     }
@@ -73,5 +74,14 @@ public class PatientServiceImpl implements PatientService {
         if (patientList.size() > 0) {
             return patientList;
         } else throw new RuntimeException("No patient with the name :" + name + " was found!");
+    }
+    @Override
+    public List<Patient> findPatient(String patientId) {
+        List<Patient> patientList=null;
+        if(patientRepo.existsByPatientId(patientId)){
+            patientList=patientRepo.findPatientsByPatientId(patientId);
+            return patientList;
+        }else throw new RuntimeException("Invalid patientId :"+patientId);
+
     }
 }

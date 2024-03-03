@@ -5,4 +5,6 @@ type Query{
     searchDoctorByName(name:String!):ApiResponse!
     searchSpecialist(conditionOrDisease:String!):ApiResponse!
     searchSpecialization(specialization:String!):ApiResponse!
+    findDoctorById(doctorId:String!):ApiResponse!
+    findPatientById(patientId:String!):ApiResponse!
 }
