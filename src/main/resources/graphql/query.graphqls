@@ -7,4 +7,5 @@ type Query{
     searchSpecialization(specialization:String!):ApiResponse!
     findDoctorById(doctorId:String!):ApiResponse!
     findPatientById(patientId:String!):ApiResponse!
+    getAppointmentByDoctor(doctorId:String!):ApiResponse!
 }

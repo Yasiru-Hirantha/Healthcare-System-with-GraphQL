@@ -1,6 +1,7 @@
 package com.hsenid.HealthcareSystemwithgraphql.controller;
 
 import com.hsenid.HealthcareSystemwithgraphql.dto.AppointmentDTO;
+import com.hsenid.HealthcareSystemwithgraphql.entity.Appointment;
 import com.hsenid.HealthcareSystemwithgraphql.entity.Doctor;
 import com.hsenid.HealthcareSystemwithgraphql.service.ReceptionService;
 import com.hsenid.HealthcareSystemwithgraphql.util.ApiResponse;
@@ -50,6 +51,11 @@ public class ReceptionController {
     public ApiResponse deleteAppointment(@Argument String appointmentId) {
         String details = receptionService.deleteAppointment(appointmentId);
         return new ApiResponse(204, details.isEmpty() ? "Oops! Wrong appointmentId: " + appointmentId : details, null, null, null);
+    }
+    @QueryMapping
+    public ApiResponse getAppointmentByDoctor(@Argument String doctorId){
+        List<Appointment> appointmentList=receptionService.findAppointment(doctorId);
+        return new ApiResponse(200,appointmentList.isEmpty()?"No appointments for the doctorId: "+doctorId+" for now":"Ok",null,null,appointmentList);
     }
 
 

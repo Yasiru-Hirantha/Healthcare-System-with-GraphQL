@@ -64,7 +64,6 @@ type Appointment{
     time:String!
 }
 input AppointmentDTO{
-    doctorId:String!
     patientId:String!
     date:String!
     time:String!

@@ -1,6 +1,7 @@
 package com.hsenid.HealthcareSystemwithgraphql.service;
 
 import com.hsenid.HealthcareSystemwithgraphql.dto.AppointmentDTO;
+import com.hsenid.HealthcareSystemwithgraphql.entity.Appointment;
 import com.hsenid.HealthcareSystemwithgraphql.entity.Doctor;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface ReceptionService {
 
     String deleteAppointment(String appointmentId);
 
+    List<Appointment> findAppointment(String doctorId);
 }
